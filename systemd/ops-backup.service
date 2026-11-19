@@ -1,0 +1,10 @@
+[Unit]
+Description=Ops toolkit - nightly backup
+After=network-online.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/default/ops-toolkit
+ExecStart=/opt/ops-toolkit/bin/backup.sh -s ${BACKUP_SOURCE} -d ${BACKUP_DEST} -k ${BACKUP_KEEP}
+Nice=10
+IOSchedulingClass=idle

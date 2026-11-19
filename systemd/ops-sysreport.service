@@ -1,0 +1,7 @@
+[Unit]
+Description=Ops toolkit - system health report
+
+[Service]
+Type=oneshot
+EnvironmentFile=-/etc/default/ops-toolkit
+ExecStart=/bin/sh -c '/opt/ops-toolkit/bin/sysreport.sh --json > /var/log/ops-toolkit/sysreport.json'

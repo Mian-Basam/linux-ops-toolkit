@@ -1,0 +1,4 @@
+# lib/common.sh is resolved at runtime relative to the script
+disable=SC1091
+# "echo | sed" is clearer than parameter expansion for indenting multi-line text
+disable=SC2001

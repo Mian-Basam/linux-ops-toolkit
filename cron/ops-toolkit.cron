@@ -1,0 +1,7 @@
+# Cron alternative to the systemd timers. Install with:
+#   sudo cp cron/ops-toolkit.cron /etc/cron.d/ops-toolkit
+# m   h  dom mon dow user  command
+*/15  *  *   *   *   root  /opt/ops-toolkit/bin/sysreport.sh --json > /var/log/ops-toolkit/sysreport.json 2>&1
+30    2  *   *   *   root  /opt/ops-toolkit/bin/backup.sh -s /etc -d /var/backups/ops-toolkit -k 14 >> /var/log/ops-toolkit/backup.log 2>&1
+*/5   *  *   *   *   root  /opt/ops-toolkit/bin/service_watchdog.sh -n nginx -u http://localhost/ >> /var/log/ops-toolkit/watchdog.log 2>&1
+0     *  *   *   *   root  /opt/ops-toolkit/bin/logwatch.sh auth /var/log/auth.log > /var/log/ops-toolkit/auth-summary.txt 2>&1
